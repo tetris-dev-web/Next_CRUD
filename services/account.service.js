@@ -1,7 +1,7 @@
 import { apiUrl } from 'config';
 import { fetchWrapper } from 'helpers';
 
-export const userService = {
+export const accountService = {
     getAll,
     getById,
     create,
@@ -9,25 +9,27 @@ export const userService = {
     delete: _delete
 };
 
-const baseUrl = `${apiUrl}/users`;
+const baseUrl = `${apiUrl}/accounts`;
 
 function getAll() {
-    return fetchWrapper.get(baseUrl);
+	return fetchWrapper.get(baseUrl);
 }
 
 function getById(id) {
-    return fetchWrapper.get(`http://localhost:3000/api/users/${id}`);
+	return fetchWrapper.get(`${baseUrl}?id=${id}`);
 }
 
 function create(params) {
-    return fetchWrapper.post(baseUrl, params);
+	return fetchWrapper.post(baseUrl, params);
 }
 
 function update(id, params) {
-    return fetchWrapper.put(`${baseUrl}/${id}`, params);
+	params.id = id;
+	return fetchWrapper.put(`${baseUrl}`, params);
 }
 
 // prefixed with underscored because delete is a reserved word in javascript
 function _delete(id) {
-    return fetchWrapper.delete(`${baseUrl}/${id}`);
+	let params = {id : id};
+	return fetchWrapper.delete(`${baseUrl}`, params);
 }

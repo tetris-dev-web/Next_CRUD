@@ -31,14 +31,17 @@ function success(message, options) {
 	alert({ ...options, type: AlertType.Success, message });
 }
 
+// error method
 function error(message, options) {
 	alert({ ...options, type: AlertType.Error, message });
 }
 
+// info method
 function info(message, options) {
 	alert({ ...options, type: AlertType.Info, message });
 }
 
+// warning method
 function warn(message, options) {
 	alert({ ...options, type: AlertType.Warning, message });
 }
